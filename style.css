@@ -1,0 +1,521 @@
+/* Basic Resets & Global Styles */
+:root {
+    --primary-blue: #3498db; /* A vibrant blue from your app's header */
+    --light-blue: #ecf0f1; /* Light background for sections */
+    --dark-blue: #2c3e50; /* For text, accents */
+    --accent-color: #e74c3c; /* A contrasting accent for buttons/highlights */
+    --text-color: #333;
+    --light-grey: #f8f8f8;
+    --border-color: #ddd;
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-strong: rgba(0, 0, 0, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: white; /* Clean white background */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--dark-blue);
+}
+
+.content-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header - Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, #6dd5ed 100%); /* Blue gradient */
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden; /* For any background effects */
+}
+
+.hero-content {
+    z-index: 2; /* Ensure content is above any background effects */
+    animation: fadeInScale 1.5s ease-out forwards;
+}
+
+.hero-section h1 {
+    font-size: 4em;
+    margin-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px var(--shadow-strong);
+}
+
+.hero-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.hero-section p {
+    font-size: 1.2em;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+}
+
+.btn-download {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px var(--shadow-strong);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-download i {
+    margin-left: 10px;
+}
+
+.btn-download:hover {
+    transform: translateY(-5px) scale(1.05);
+    background-color: #c0392b;
+    box-shadow: 0 8px 20px var(--shadow-strong);
+}
+
+/* Pulsating Effect for primary download button */
+.pulsating-btn {
+    animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 var(--accent-color);
+        transform: scale(1);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
+        transform: scale(1.02);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+        transform: scale(1);
+    }
+}
+
+
+/* General Section Styling */
+.section-container {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: white;
+    border-bottom: 1px solid var(--light-grey);
+    opacity: 0; /* Initial state for fade-in */
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.section-container.fade-in.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-container:nth-child(even) {
+    background-color: var(--light-grey);
+}
+
+h2 {
+    font-size: 3em;
+    margin-bottom: 40px;
+    color: var(--dark-blue);
+    font-weight: 700;
+    position: relative;
+    display: inline-block; /* To allow pseudo-element width */
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-blue);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+h3 {
+    font-size: 2.2em;
+    margin-bottom: 30px;
+    color: var(--dark-blue);
+    font-weight: 600;
+}
+
+/* Feature Items */
+.feature-item {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center content horizontally */
+    margin-bottom: 80px;
+    gap: 40px;
+    text-align: center; /* Center text within feature items */
+    opacity: 0; /* Initial state for reveal-on-scroll */
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.feature-item.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Removed .reverse as there's no layout to reverse without images */
+
+.feature-text {
+    flex: 1; /* Allow text to take available space */
+    padding: 20px;
+    max-width: 800px; /* Constrain text width for better readability */
+}
+
+.feature-text.full-width { /* New class for text-only items */
+    width: 100%;
+}
+
+.feature-text h4 {
+    font-size: 2em;
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+    font-weight: 600;
+    display: flex; /* For icon alignment */
+    align-items: center;
+    justify-content: center; /* Center icon and text */
+    gap: 15px; /* Space between text and icon */
+}
+
+.feature-icon {
+    font-size: 1em; /* Keep icon size relative to heading */
+    color: var(--dark-blue);
+}
+
+
+.feature-text ul {
+    list-style: none;
+    padding-left: 0;
+    text-align: center; /* Center list items */
+}
+
+.feature-text ul li {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+.feature-text ul li strong {
+    color: var(--dark-blue);
+}
+
+/* Removed .feature-image styles */
+
+.feature-item:last-of-type {
+    margin-bottom: 0;
+}
+
+/* Advantages Grid */
+.advantages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.advantage-item {
+    background-color: white;
+    padding: 40px 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px var(--shadow-light);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    opacity: 0; /* Initial state for reveal-on-scroll */
+    transform: translateY(20px);
+}
+
+.advantage-item.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.advantage-item:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 12px 25px var(--shadow-strong);
+}
+
+.icon-large {
+    font-size: 3.5em;
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+}
+
+.advantage-item h4 {
+    font-size: 1.6em;
+    color: var(--dark-blue);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.advantage-item p {
+    font-size: 1.1em;
+    line-height: 1.7;
+}
+
+/* Download Section */
+#download-section {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 80px 20px;
+}
+
+#download-section h2 {
+    color: white;
+}
+
+#download-section h2::after {
+    background-color: white;
+}
+
+.download-info {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+}
+
+.android-versions p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.install-steps-title {
+    font-size: 1.4em;
+    font-weight: 600;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.install-steps {
+    list-style: none;
+    counter-reset: step-counter;
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto 50px auto;
+}
+
+.install-steps li {
+    counter-increment: step-counter;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    padding-left: 40px;
+    position: relative;
+    line-height: 1.8;
+}
+
+.install-steps li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    color: var(--primary-blue);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Contact Section */
+#contact-section {
+    background-color: var(--light-grey);
+}
+
+.contact-info {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.contact-info p {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-info a {
+    color: var(--dark-blue);
+    font-weight: 600;
+}
+
+.contact-icon {
+    color: var(--primary-blue);
+    margin-right: 15px;
+    font-size: 1.5em;
+    transition: transform 0.2s ease;
+}
+
+.contact-info p:hover .contact-icon {
+    transform: scale(1.1);
+}
+
+.contact-note {
+    font-size: 0.95em;
+    color: #666;
+    margin-top: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* Footer */
+footer {
+    background-color: var(--dark-blue);
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.9em;
+}
+
+footer a {
+    color: white;
+    margin-left: 15px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Animations (for JavaScript scroll reveal) */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 80px 15px;
+    }
+
+    .hero-section h1 {
+        font-size: 3em;
+    }
+
+    .hero-section h2 {
+        font-size: 1.5em;
+    }
+
+    .hero-section p {
+        font-size: 1em;
+    }
+
+    .section-container {
+        padding: 60px 15px;
+    }
+
+    h2 {
+        font-size: 2.5em;
+        margin-bottom: 30px;
+    }
+
+    h3 {
+        font-size: 1.8em;
+    }
+
+    .feature-item {
+        flex-direction: column; /* Always stack vertically without images */
+        margin-bottom: 60px;
+        text-align: center;
+    }
+
+    .feature-text h4 {
+        flex-direction: column; /* Stack icon and text vertically */
+        gap: 5px;
+    }
+
+    .feature-text ul {
+        text-align: center; /* Ensure lists remain centered */
+    }
+
+    .advantages-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .install-steps {
+        padding-left: 20px;
+    }
+
+    .install-steps li {
+        padding-left: 35px;
+    }
+
+    .install-steps li::before {
+        left: -5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section h1 {
+        font-size: 2.5em;
+    }
+    .hero-section h2 {
+        font-size: 1.2em;
+    }
+    h2 {
+        font-size: 2em;
+    }
+    .feature-text h4 {
+        font-size: 1.5em;
+    }
+    .feature-text ul li, .advantage-item p, .download-info, .android-versions p, .install-steps li {
+        font-size: 1em;
+    }
+    .contact-info p {
+        font-size: 1em;
+        flex-direction: column;
+        gap: 5px;
+    }
+    .contact-icon {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+}
