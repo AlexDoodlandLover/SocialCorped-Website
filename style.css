@@ -356,6 +356,40 @@ h3 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Style for the 'OR' separator */
+.or-separator {
+    margin: 40px 0; /* More spacing for prominence */
+    font-size: 1.5em; /* Larger size */
+    font-weight: 700; /* Bolder */
+    color: white;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.or-separator::before,
+.or-separator::after {
+    content: '';
+    flex-grow: 1;
+    height: 2px;
+    background-color: white;
+    margin: 0 20px;
+}
+
+/* Mirror button specific style */
+.mirror-btn {
+    background-color: #607d8b; /* A subtle grey/blue for mirror */
+    animation: none; /* No pulsation for the mirror link */
+    margin-top: 30px; /* Space from the list */
+}
+
+.mirror-btn:hover {
+    background-color: #455a64; /* Darker grey/blue on hover */
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 20px var(--shadow-strong);
+}
+
 /* Contact Section */
 #contact-section {
     background-color: var(--light-grey);
@@ -490,6 +524,15 @@ footer a:hover {
 
     .install-steps li::before {
         left: -5px;
+    }
+
+    .or-separator {
+        font-size: 1.3em;
+    }
+
+    .or-separator::before,
+    .or-separator::after {
+        margin: 0 10px;
     }
 }
 
